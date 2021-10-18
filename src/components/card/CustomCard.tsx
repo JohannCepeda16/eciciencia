@@ -14,6 +14,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import { Button } from "@mui/material";
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -35,6 +36,8 @@ export interface ICustomCard {
     description: string;
     img: string;
     date: string;
+    url: string;
+    likes?: string[];
 }
 
 export interface IProps {
@@ -52,7 +55,7 @@ export default function CustomCard(props: IProps & any) {
     return (
         <Card
             sx={{
-                minWidth:345,
+                minWidth: 345,
                 maxWidth: 345,
                 maxHeight: 600,
             }}
@@ -60,7 +63,7 @@ export default function CustomCard(props: IProps & any) {
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        C
+                        ECI
                     </Avatar>
                 }
                 title={
@@ -87,7 +90,11 @@ export default function CustomCard(props: IProps & any) {
             <CardActions disableSpacing style={{ marginTop: "auto" }}>
                 <IconButton aria-label="like">
                     <FavoriteIcon />
+                    <label>{card.likes?.length || 0}</label>
                 </IconButton>
+                <Button href={card.url} target="_blank">
+                    Visualizar PDF
+                </Button>
             </CardActions>
         </Card>
     );

@@ -9,6 +9,7 @@ import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyD598YK3KtCNw8ADXSnHTGqTx-qRcKuwYQ",
   authDomain: "eciciencia-posters.firebaseapp.com",
+  databaseURL: "https://eciciencia-posters-default-rtdb.firebaseio.com",
   projectId: "eciciencia-posters",
   storageBucket: "eciciencia-posters.appspot.com",
   messagingSenderId: "1098853679403",

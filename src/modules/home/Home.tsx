@@ -1,7 +1,6 @@
-import { Grid } from "@mui/material";
 import Banner from "../../components/banner/Banner";
 import CardList from "../../components/card-list/CardList";
-import { dataPosters, postGraduate } from "../../resources/data/data-posters";
+import { dataPosters, postGraduate } from "../../assets/data/data-posters";
 
 export default function Home() {
     const posters = dataPosters;
@@ -18,11 +17,11 @@ export default function Home() {
             <Banner />
             {/* Posgrado */}
             {graduateKeys.map((item: any, i: number) => (
-                <CardList title={item} cards={graduateValues[i]} />
+                <CardList key={i} title={item} cards={graduateValues[i]} />
             ))}
             {/* Semilleros  */}
             {posterKeys.map((item: any, i: number) => (
-                <CardList title={item} cards={posterValues[i]} />
+                <CardList key={i} title={item} cards={posterValues[i]} />
             ))}
         </>
     );
