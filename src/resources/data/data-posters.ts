@@ -1,4 +1,4 @@
-export const data = {
+export const dataPosters = {
     "Jóvenes emprendedores": [
         {
             title: "Análisis de habilidades blandas en el mercado laboral",
@@ -152,6 +152,36 @@ export const data = {
                 "El objetivo de este trabajo es encontrar las características de los modelos de madurez de procesos existentes que puedan servir para su aplicación en las pymes de servicios en Bogotá y sabana ya que el uso de los modelos no les resulta tan fácil dada su estructura y sus procesos.",
             img: "",
             date: "Claudia Rodríguez",
+        },
+    ],
+};
+
+export const postGraduate = {
+    "Maestría en Ciencia de Datos": [
+        {
+            title: "Detección de Estados de Rover con Machine Learning",
+            description:
+                " Los rovers son robots que pueden explorar diferentes tipos de terrenos y suelos. Este trabajo propone un método de identificación de tipo superficie sobre en la que está rodando un robot autónomo mediante el procesamiento, con técnicas de Machine Learning, de señales provenientes de  una Unidad Inercial de Movimiento IMU",
+            img: "",
+            date: "Javier Chaparro",
+        },
+    ],
+    "Maestría en Ingeniería Electrónica": [
+        {
+            title: "Automatización del riego a partir de los parámetros hidrodinámicos del sustrato en un cultivo de arándanos",
+            description:
+                "El cultivo de arándonos requiere el control de humedad del sustrato de forma muy precisa. En este trabajo se diseña e implementa un sistema de control del riego utilizando como referencia las variables hidrodinámicas del sustrato, dispuesto en bolsas, y tomadas a 25 y 35 centímetros de profundidad",
+            img: "",
+            date: "Javier Chaparro",
+        },
+    ],
+    "Maestría en Ingeniería Civil - Énfasis en Tránsito y Transporte ": [
+        {
+            title: "Metodología para el análisis de la infraestructura de ciclorrutas de la localidad  de Bosa: Recomendaciones hacia una visión de vinculación entre la conectividad y accesibilidad para la ciudad de Bogotá D.C.",
+            description:
+                "Esta investigación tiene como objetivo desarrollar un análisis de la conectividad y la accesibilidad de la infraestructura de ciclorrutas de la localidad de Bosa en la ciudad de Bogotá. Se aborda desde un enfoque de movilidad sostenible que incluye los modos de transporte no motorizado como la bicicleta e integra los conceptos de conectividad, accesibilidad, ciclo-infraestructura y ciclo-inclusión.",
+            img: "",
+            date: "Mónica Suárez",
         },
     ],
 };
