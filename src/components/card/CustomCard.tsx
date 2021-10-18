@@ -16,74 +16,79 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+    expand: boolean;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
+    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+        duration: theme.transitions.duration.shortest,
+    }),
 }));
 
 export interface ICustomCard {
-  title: string;
-  description: string;
-  img: string;
-  date: string;
+    title: string;
+    description: string;
+    img: string;
+    date: string;
 }
 
 export interface IProps {
-  card: ICustomCard;
+    card: ICustomCard;
 }
 
 export default function CustomCard(props: IProps & any) {
-  const card: ICustomCard = props.card;
-  const [expanded, setExpanded] = useState(false);
+    const card: ICustomCard = props.card;
+    const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
-  return (
-    <Card
-      sx={{
-        maxWidth: 345,
-      }}
-    >
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            C
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={card.title}
-        subheader={card.date}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={card.img}
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {card.description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
+    return (
+        <Card
+            sx={{
+                minWidth:345,
+                maxWidth: 345,
+                maxHeight: 600,
+            }}
+        >
+            <CardHeader
+                avatar={
+                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                        C
+                    </Avatar>
+                }
+                title={
+                    card.title.length >= 50
+                        ? card.title.slice(0, 50) + "..."
+                        : card.title
+                }
+                subheader={card.date}
+            />
+            <CardMedia component="img" height="194" image={card.img} />
+            <CardContent>
+                <textarea
+                    style={{
+                        textAlign: "justify",
+                        width: "100%",
+                        height: "150px",
+                        resize: "none",
+                    }}
+                    value={card.description}
+                    disabled
+                    readOnly
+                />
+            </CardContent>
+            <CardActions disableSpacing style={{ marginTop: "auto" }}>
+                <IconButton aria-label="like">
+                    <FavoriteIcon />
+                </IconButton>
+            </CardActions>
+        </Card>
+    );
 }
