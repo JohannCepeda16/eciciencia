@@ -10,11 +10,10 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Icon from "../../assets/icons/logo.png";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import "./CustomCard.css"
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -60,20 +59,25 @@ export default function CustomCard(props: IProps & any) {
                 maxHeight: 600,
             }}
         >
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        ECI
-                    </Avatar>
-                }
-                title={
-                    card.title.length >= 50
-                        ? card.title.slice(0, 50) + "..."
-                        : card.title
-                }
-                subheader={card.date}
-            />
-            <CardMedia component="img" height="194" image={card.img} />
+            <div className="tooltip">
+                <span className="tooltiptext">{card.title}</span>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                            <img src={Icon} style={{ width: 40, height: 40 }} />
+                        </Avatar>
+                    }
+                    title={
+                        card.title.length > 50
+                            ? card.title.slice(0, 50) + "..."
+                            : card.title
+                    }
+                    subheader={card.date}
+                />
+            </div>
+            <a target="_blank" href={card.url}>
+                <CardMedia component="img" height="194" image={card.img} />
+            </a>
             <CardContent>
                 <textarea
                     style={{
@@ -81,6 +85,8 @@ export default function CustomCard(props: IProps & any) {
                         width: "100%",
                         height: "150px",
                         resize: "none",
+                        fontSize: "16px",
+                        backgroundColor: "white",
                     }}
                     value={card.description}
                     disabled
