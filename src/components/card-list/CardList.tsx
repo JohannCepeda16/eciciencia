@@ -6,6 +6,7 @@ export interface ICardList {
     cards: ICustomCard[];
     title: string;
     likes: string[]
+    fetchLikes: any;
 }
 
 export default function CardList(props: ICardList) {
@@ -42,7 +43,7 @@ export default function CardList(props: ICardList) {
             >
                 {data.map((card: ICustomCard, index: number) => (
                     <Grid item key={index}>
-                        <CustomCard likes={props.likes} card={card} xs={4} />
+                        <CustomCard fetchLikes={props.fetchLikes} likes={props.likes} card={card} xs={4} />
                     </Grid>
                 ))}
             </Grid>

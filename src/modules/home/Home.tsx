@@ -35,13 +35,13 @@ export default function Home(props: any) {
             {/* Posgrado */}
             <div id="maestria">
                 {graduateKeys.map((item: any, i: number) => (
-                    <CardList key={i} title={item} cards={graduateValues[i]} likes={props.likes}/>
+                    <CardList fetchLikes={props.fetchLikes} key={i} title={item} cards={graduateValues[i]} likes={props.likes}/>
                 ))}
             </div>
             {/* Semilleros  */}
             <div id="semilleros">
                 {posterKeys.map((item: any, i: number) => (
-                    <CardList key={i} title={item} cards={posterValues[i]} likes={props.likes}/>
+                    <CardList fetchLikes={props.fetchLikes} key={i} title={item} cards={posterValues[i]} likes={props.likes}/>
                 ))}
             </div>
         </>

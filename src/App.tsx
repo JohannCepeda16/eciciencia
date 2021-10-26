@@ -19,6 +19,7 @@ const firebaseConfig = {
 export default function App() {
     let app: any = undefined;
     const [likes, setLikes] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false);
     
     useEffect(() => {
         // Initialize Firebase
@@ -28,19 +29,26 @@ export default function App() {
     }, []);
 
     const fetchLikes = async () => {
+        setLoading(true);
         const db = getFirestore(app);
         const response = collection(db, "likes");
         const data = await getDocs(response);
-        console.log(data.docs.length);
         const docs = data.docs.map((doc) => doc.data());
-        console.log(docs[0].likes);
         setLikes(docs[0].likes);
+        setLoading(false);
     };
 
-    return (
-        <div className="App" style={{ backgroundColor: colors.PRIMARY }}>
-            <Home likes={likes}/>
-        </div>
-    );
+    if(!loading){
+
+        return (
+            <div className="App" style={{ backgroundColor: colors.PRIMARY }}>
+                <Home likes={likes} fetchLikes={fetchLikes}/>
+            </div>
+        );
+    }else{
+        return(
+            <div>Cargando...</div>
+        )
+    }
 }
 
