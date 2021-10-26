@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { colors } from "./commons";
 import Home from "./modules/home/Home";
-import * as admin from "firebase-admin";
+import { initializeApp, getApps, FirebaseApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD598YK3KtCNw8ADXSnHTGqTx-qRcKuwYQ",
@@ -15,31 +16,31 @@ const firebaseConfig = {
     measurementId: "G-46BHD3CFYR",
 };
 
-function App() {
-    // useEffect(() => {
-    //     // Initialize Firebase
-    //     if (!admin.apps.length) admin.initializeApp(firebaseConfig);
-    //     // Get a database reference to our posts
-    //     const db = admin.database();
-    //     const ref = db.ref();
+export default function App() {
+    let app: any = undefined;
+    const [likes, setLikes] = useState<string[]>([]);
+    
+    useEffect(() => {
+        // Initialize Firebase
+        if (!getApps().length) app = initializeApp(firebaseConfig);
+        // Get a database reference to our posts
+        fetchLikes();
+    }, []);
 
-    //     // Attach an asynchronous callback to read the data at our posts reference
-    //     ref.on(
-    //         "value",
-    //         (snapshot: any) => {
-    //             console.log(snapshot.val());
-    //         },
-    //         (errorObject: any) => {
-    //             console.log("The read failed: " + errorObject.name);
-    //         }
-    //     );
-    // }, []);
+    const fetchLikes = async () => {
+        const db = getFirestore(app);
+        const response = collection(db, "likes");
+        const data = await getDocs(response);
+        console.log(data.docs.length);
+        const docs = data.docs.map((doc) => doc.data());
+        console.log(docs[0].likes);
+        setLikes(docs[0].likes);
+    };
 
     return (
         <div className="App" style={{ backgroundColor: colors.PRIMARY }}>
-            <Home />
+            <Home likes={likes}/>
         </div>
     );
 }
 
-export default App;

@@ -10,11 +10,14 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState } from "react";
+import Icon from "../../assets/icons/logo.png";
+import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
+import { initializeApp, getApps, FirebaseApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import "./CustomCard.css";
+
+const axios = require("axios");
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -42,14 +45,40 @@ export interface ICustomCard {
 
 export interface IProps {
     card: ICustomCard;
+    likes: string[];
 }
 
 export default function CustomCard(props: IProps & any) {
     const card: ICustomCard = props.card;
+    const likes = props.likes;
+    const [ip, setIP] = useState();
     const [expanded, setExpanded] = useState(false);
+    const [likedByMe, setLikedByMe] = useState(false);
+
+    useEffect(() => {
+        isLikedByMe();
+    }, []);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+    const isLikedByMe = async () => {
+        const res = await axios.get("https://geolocation-db.com/json/");
+        setIP(res.data.IPv4);
+        setLikedByMe(likes.includes(res.data.IPv4));
+    };
+
+    const likePost = async () => {
+        const db = getFirestore();
+        const docRef = collection(db, "likes");
+        const doc = getDocs(docRef);
+
+        // await doc.set({
+        //     first: "Ada",
+        //     last: "Lovelace",
+        //     born: 1815,
+        // });
     };
 
     return (
@@ -60,20 +89,28 @@ export default function CustomCard(props: IProps & any) {
                 maxHeight: 600,
             }}
         >
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        ECI
-                    </Avatar>
-                }
-                title={
-                    card.title.length >= 50
-                        ? card.title.slice(0, 50) + "..."
-                        : card.title
-                }
-                subheader={card.date}
-            />
-            <CardMedia component="img" height="194" image={card.img} />
+            <div className="tooltip">
+                <span className="tooltiptext">{card.title}</span>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                            <img src={Icon} style={{ width: 40, height: 40 }} />
+                        </Avatar>
+                    }
+                    title={
+                        card.title.length > 50
+                            ? card.title.slice(0, 50) + "..."
+                            : card.title
+                    }
+                    style={{
+                        fontFamily: "Domine",
+                    }}
+                    subheader={card.date}
+                />
+            </div>
+            <a target="_blank" href={card.url}>
+                <CardMedia component="img" height="194" image={card.img} />
+            </a>
             <CardContent>
                 <textarea
                     style={{
@@ -81,6 +118,9 @@ export default function CustomCard(props: IProps & any) {
                         width: "100%",
                         height: "150px",
                         resize: "none",
+                        fontSize: "16px",
+                        backgroundColor: "white",
+                        fontFamily: "Domine",
                     }}
                     value={card.description}
                     disabled
@@ -88,8 +128,10 @@ export default function CustomCard(props: IProps & any) {
                 />
             </CardContent>
             <CardActions disableSpacing style={{ marginTop: "auto" }}>
-                <IconButton aria-label="like">
-                    <FavoriteIcon />
+                <IconButton onClick={() => likePost()} aria-label="like">
+                    <FavoriteIcon
+                        style={{ backgroundColor: likedByMe ? "red" : "blue" }}
+                    />
                     <label>{card.likes?.length || 0}</label>
                 </IconButton>
                 <Button href={card.url} target="_blank">
