@@ -11,9 +11,13 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Icon from "../../assets/icons/logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
+import { initializeApp, getApps, FirebaseApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 import "./CustomCard.css";
+
+const axios = require("axios");
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -41,14 +45,40 @@ export interface ICustomCard {
 
 export interface IProps {
     card: ICustomCard;
+    likes: string[];
 }
 
 export default function CustomCard(props: IProps & any) {
     const card: ICustomCard = props.card;
+    const likes = props.likes;
+    const [ip, setIP] = useState();
     const [expanded, setExpanded] = useState(false);
+    const [likedByMe, setLikedByMe] = useState(false);
+
+    useEffect(() => {
+        isLikedByMe();
+    }, []);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+    const isLikedByMe = async () => {
+        const res = await axios.get("https://geolocation-db.com/json/");
+        setIP(res.data.IPv4);
+        setLikedByMe(likes.includes(res.data.IPv4));
+    };
+
+    const likePost = async () => {
+        const db = getFirestore();
+        const docRef = collection(db, "likes");
+        const doc = getDocs(docRef);
+
+        // await doc.set({
+        //     first: "Ada",
+        //     last: "Lovelace",
+        //     born: 1815,
+        // });
     };
 
     return (
@@ -73,7 +103,7 @@ export default function CustomCard(props: IProps & any) {
                             : card.title
                     }
                     style={{
-                        fontFamily:"Domine"
+                        fontFamily: "Domine",
                     }}
                     subheader={card.date}
                 />
@@ -98,8 +128,10 @@ export default function CustomCard(props: IProps & any) {
                 />
             </CardContent>
             <CardActions disableSpacing style={{ marginTop: "auto" }}>
-                <IconButton aria-label="like">
-                    <FavoriteIcon />
+                <IconButton onClick={() => likePost()} aria-label="like">
+                    <FavoriteIcon
+                        style={{ backgroundColor: likedByMe ? "red" : "blue" }}
+                    />
                     <label>{card.likes?.length || 0}</label>
                 </IconButton>
                 <Button href={card.url} target="_blank">

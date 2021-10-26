@@ -3,7 +3,7 @@ import CardList from "../../components/card-list/CardList";
 import { dataPosters, postGraduate } from "../../assets/data/data-posters";
 import { Link, Typography, Breadcrumbs } from "@mui/material";
 
-export default function Home() {
+export default function Home(props: any) {
     const posters = dataPosters;
     const postGraduatePosters = postGraduate;
 
@@ -35,13 +35,13 @@ export default function Home() {
             {/* Posgrado */}
             <div id="maestria">
                 {graduateKeys.map((item: any, i: number) => (
-                    <CardList key={i} title={item} cards={graduateValues[i]} />
+                    <CardList key={i} title={item} cards={graduateValues[i]} likes={props.likes}/>
                 ))}
             </div>
             {/* Semilleros  */}
             <div id="semilleros">
                 {posterKeys.map((item: any, i: number) => (
-                    <CardList key={i} title={item} cards={posterValues[i]} />
+                    <CardList key={i} title={item} cards={posterValues[i]} likes={props.likes}/>
                 ))}
             </div>
         </>
