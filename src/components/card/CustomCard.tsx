@@ -13,7 +13,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Icon from "../../assets/icons/logo.png";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import "./CustomCard.css"
+import "./CustomCard.css";
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -72,6 +72,9 @@ export default function CustomCard(props: IProps & any) {
                             ? card.title.slice(0, 50) + "..."
                             : card.title
                     }
+                    style={{
+                        fontFamily:"Domine"
+                    }}
                     subheader={card.date}
                 />
             </div>
@@ -87,6 +90,7 @@ export default function CustomCard(props: IProps & any) {
                         resize: "none",
                         fontSize: "16px",
                         backgroundColor: "white",
+                        fontFamily: "Domine",
                     }}
                     value={card.description}
                     disabled

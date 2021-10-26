@@ -21,6 +21,7 @@ export default function Home() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    fontFamily: "Domine",
                 }}
                 aria-label="breadcrumb"
             >
