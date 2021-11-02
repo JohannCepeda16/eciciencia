@@ -12,7 +12,7 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Icon from "../../assets/icons/logo.png";
 import { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import {
     getFirestore,
@@ -22,6 +22,7 @@ import {
     setDoc,
 } from "firebase/firestore/lite";
 import "./CustomCard.css";
+import { colors } from "../../commons";
 
 const axios = require("axios");
 export interface ICustomCard {
@@ -91,6 +92,10 @@ export default function CustomCard(props: IProps & any) {
                     maxWidth: 345,
                     maxHeight: 600,
                 }}
+                style={{
+                    border: "1px #002E6E solid",
+                    borderRadius:"25px"
+                }}
             >
                 <div className="tooltip">
                     <span className="tooltiptext">{card.title}</span>
@@ -113,6 +118,8 @@ export default function CustomCard(props: IProps & any) {
                         }
                         style={{
                             fontFamily: "Domine",
+                            fontWeight: "bold",
+                            boxShadow:"2px 2px 2px 1px #000"
                         }}
                         subheader={card.date}
                     />
@@ -150,6 +157,6 @@ export default function CustomCard(props: IProps & any) {
             </Card>
         );
     } else {
-        return <div>Cargando...</div>;
+        return <CircularProgress />;
     }
 }

@@ -4,6 +4,7 @@ import { colors } from "./commons";
 import Home from "./modules/home/Home";
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import { CircularProgress } from "@mui/material";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD598YK3KtCNw8ADXSnHTGqTx-qRcKuwYQ",
@@ -47,7 +48,7 @@ export default function App() {
         );
     }else{
         return(
-            <div>Cargando...</div>
+            <CircularProgress />
         )
     }
 }

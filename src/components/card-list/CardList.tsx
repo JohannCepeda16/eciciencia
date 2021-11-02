@@ -5,7 +5,7 @@ import CustomCard, { ICustomCard } from "../card/CustomCard";
 export interface ICardList {
     cards: ICustomCard[];
     title: string;
-    likes: string[]
+    likes: string[];
     fetchLikes: any;
 }
 
@@ -28,10 +28,19 @@ export default function CardList(props: ICardList) {
                     xs={12}
                     md={12}
                     style={{
-                        backgroundColor: colors.THIRD,
+                        backgroundColor: colors.SECONDARY,
+                        borderBottom: "1px #ffffff solid",
+                        alignSelf: "center",
                     }}
                 >
-                    <h1 style={{ padding: 0, margin: 0, color: colors.SECONDARY }}>
+                    <h1
+                        style={{
+                            padding: 0,
+                            margin: 0,
+                            color: "white",
+                            fontFamily: "Domine",
+                        }}
+                    >
                         {props.title}
                     </h1>
                 </Grid>
@@ -43,7 +52,12 @@ export default function CardList(props: ICardList) {
             >
                 {data.map((card: ICustomCard, index: number) => (
                     <Grid item key={index}>
-                        <CustomCard fetchLikes={props.fetchLikes} likes={props.likes} card={card} xs={4} />
+                        <CustomCard
+                            fetchLikes={props.fetchLikes}
+                            likes={props.likes}
+                            card={card}
+                            xs={4}
+                        />
                     </Grid>
                 ))}
             </Grid>
