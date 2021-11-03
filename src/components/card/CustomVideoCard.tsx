@@ -67,18 +67,22 @@ export default function CustomVideoCard(props: IProps & any) {
     };
 
     const likePost = async () => {
-        let currentLikes = likes[card.id] ? [...likes[card.id]] : [];
+        const db = getFirestore();
+        const docRef = collection(db, "likes");
+        const data = await getDocs(docRef);
+        const docs = data.docs.map((doc) => doc.data());
+        let fullLikes = docs[0].likes;
+
+        let currentLikes = fullLikes[card.id] ? [...fullLikes[card.id]] : [];
         if (!currentLikes.includes(ip)) {
             currentLikes.push(ip);
         }
-        let fullLikes = likes;
+
         fullLikes[card.id] = currentLikes;
 
         //Persist
-        const db = getFirestore();
-        const docRef = collection(db, "likes");
         const document = doc(docRef, "OBV3K4fkQLPP58jwxhOY");
-        const finalDto = { likes: likes };
+        const finalDto = { likes: fullLikes };
         const response = await setDoc(document, finalDto);
         setLikedByMe(true);
         // fetchLikes();
