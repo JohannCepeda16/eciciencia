@@ -302,7 +302,7 @@ export const leaderShip = {
             type: "video",
             title: "Extensión web de descripciones de electivas técnicas",
             description:
-                "Se quiere crear en los estudiantes el interés por estar informados de la realidad actual del país y de esa forma, puedan crear una posición objetiva ante las diferentes problemáticas del país, y no solo seguir la posición de un partido político porque es el que le heredaron a sus padres. Por ende, no se trata de crear una posición política, se trata de preparar a los estudiantes para que elijan correctamente y tengan criterios de peso cuando tomen decisiones de carácter político que cuando tomen estas decisiones tengas en cuenta que afectan a toda una sociedad.",
+                "Realizar una extensión de la página web que permita consultar descripciones de énfasis y electivas técnicas de las distintas carreras.",
             img: v5,
             date: "Mateo Tobon, Ingrid Carrillo, Norbey Cardona",
             url: "https://youtu.be/2FxKuiHkvys",

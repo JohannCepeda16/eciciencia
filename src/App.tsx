@@ -37,6 +37,7 @@ export default function App() {
         const docs = data.docs.map((doc) => doc.data());
         setLikes(docs[0].likes);
         setLoading(false);
+        return docs[0].likes;
     };
 
     if(!loading){
