@@ -22,13 +22,14 @@ export default function Home(props: any) {
                     justifyContent: "center",
                     alignItems: "center",
                     fontFamily: "Domine",
+                    margin:"50px",
                 }}
                 aria-label="breadcrumb"
             >
-                <Link underline="hover" color="inherit" href="#maestria">
+                <Link fontSize="30px" underline="hover" color="inherit" href="#maestria">
                     Posters de maestría
                 </Link>
-                <Link underline="hover" color="inherit" href="#semilleros">
+                <Link fontSize="30px" underline="hover" color="inherit" href="#semilleros">
                     Posters de semilleros
                 </Link>
             </Breadcrumbs>
