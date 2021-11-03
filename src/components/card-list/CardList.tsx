@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import { colors } from "../../commons";
 import CustomCard, { ICustomCard } from "../card/CustomCard";
+import CustomVideoCard from "../card/CustomVideoCard";
 
 export interface ICardList {
     cards: ICustomCard[];
@@ -52,12 +53,21 @@ export default function CardList(props: ICardList) {
             >
                 {data.map((card: ICustomCard, index: number) => (
                     <Grid item key={index}>
-                        <CustomCard
-                            fetchLikes={props.fetchLikes}
-                            likes={props.likes}
-                            card={card}
-                            xs={4}
-                        />
+                        {card.type && card.type === "video" ? (
+                            <CustomVideoCard
+                                fetchLikes={props.fetchLikes}
+                                likes={props.likes}
+                                card={card}
+                                xs={4}
+                            />
+                        ) : (
+                            <CustomCard
+                                fetchLikes={props.fetchLikes}
+                                likes={props.likes}
+                                card={card}
+                                xs={4}
+                            />
+                        )}
                     </Grid>
                 ))}
             </Grid>

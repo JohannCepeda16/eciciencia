@@ -42,7 +42,7 @@ export interface IProps {
     likes: string[];
 }
 
-export default function CustomCard(props: IProps & any) {
+export default function CustomVideoCard(props: IProps & any) {
     const card: ICustomCard = props.card;
     const [likes, setLikes] = useState(props.likes || {});
     const fetchLikes = props.fetchLikes;
@@ -152,7 +152,7 @@ export default function CustomCard(props: IProps & any) {
                         <label>{likes[card.id]?.length || 0}</label>
                     </IconButton>
                     <Button href={card.url} target="_blank">
-                        Visualizar PDF
+                        Ver video
                     </Button>
                 </CardActions>
             </Card>
