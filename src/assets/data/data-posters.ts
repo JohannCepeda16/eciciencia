@@ -203,6 +203,16 @@ export const dataPosters = {
             date: "Javier Chaparro",
             url: "https://firebasestorage.googleapis.com/v0/b/eciciencia-posters.appspot.com/o/11.%20Semillero%20Metodolog%C3%ADa%20automatico%20cultivos%20papa%20%20Manuel%20Gantiva.pdf?alt=media&token=49e2f3de-c5dd-4dc9-93c5-76dd61095760",
         },
+        {
+            id: "23",
+            title: "Microhuerto Automatizado con Tecnología IoT para Cultivo de Tomate",
+            type: "post",
+            description:
+                "Los microhuertos son una alternativa para tener cultivos personalizados en pequeños espacios. En este trabajo se diseña y implementa un sistema de control para automatizar el proceso de cultivo de tomate chirry en pequeños huertos. Se adquieren y controlan variables ambientales y de sustrato apoyas con imágenes y sensores.",
+            img: "https://firebasestorage.googleapis.com/v0/b/eciciencia-posters.appspot.com/o/views%2Ftomate.PNG?alt=media&token=9a1bfe90-cdea-4bb7-9157-94c522b49cf9",
+            date: "Javier Chaparro",
+            url: "https://firebasestorage.googleapis.com/v0/b/eciciencia-posters.appspot.com/o/12.%20Semilllero%20Microhuerto%20Inteligente%20Alejandro%20Criado.pdf?alt=media&token=3b5924fd-73f1-4674-95aa-981b069d5f4b",
+        },
     ],
 };
 
@@ -280,7 +290,7 @@ export const leaderShip = {
         {
             id: "v4",
             type: "video",
-            title: "Desarrollo de habilidades criticas para la participación democrática.​",
+            title: "Desarrollo de habilidades criticas para la participación democrática.",
             description:
                 "Se quiere crear en los estudiantes el interés por estar informados de la realidad actual del país y de esa forma, puedan crear una posición objetiva ante las diferentes problemáticas del país, y no solo seguir la posición de un partido político porque es el que le heredaron a sus padres. Por ende, no se trata de crear una posición política, se trata de preparar a los estudiantes para que elijan correctamente y tengan criterios de peso cuando tomen decisiones de carácter político que cuando tomen estas decisiones tengas en cuenta que afectan a toda una sociedad.",
             img: v4,
