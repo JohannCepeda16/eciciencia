@@ -304,7 +304,7 @@ export const leaderShip = {
             description:
                 "Realizar una extensión de la página web que permita consultar descripciones de énfasis y electivas técnicas de las distintas carreras.",
             img: v5,
-            date: "Mateo Tobon, Ingrid Carrillo, Norbey Cardona",
+            date: "Mateo Tobon, Ingrid Carrillo, Norbey Cardona, Andrea Morales",
             url: "https://youtu.be/2FxKuiHkvys",
         },
         {
