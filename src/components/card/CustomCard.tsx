@@ -51,11 +51,15 @@ export default function CustomCard(props: IProps & any) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        isLikedByMe();
+        setLikes(props.likes);
     }, [props.likes]);
 
+    useEffect(() => {
+        isLikedByMe()
+    }, [likes])
+
     const isLikedByMe = async () => {
-        setLoading(true);
+        // setLoading(true);
         const res = await axios.get("https://geolocation-db.com/json/");
         setIP(res.data.IPv4);
         if (likes && likes[card.id]) {
@@ -63,7 +67,7 @@ export default function CustomCard(props: IProps & any) {
         } else {
             setLikedByMe(false);
         }
-        setLoading(false);
+        // setLoading(false);
     };
 
     const likePost = async () => {
@@ -73,6 +77,7 @@ export default function CustomCard(props: IProps & any) {
         const docs = data.docs.map((doc) => doc.data());
         let fullLikes = docs[0].likes;
 
+        console.log("Full likes", fullLikes);
         let currentLikes = fullLikes[card.id] ? [...fullLikes[card.id]] : [];
         if (!currentLikes.includes(ip)) {
             currentLikes.push(ip);

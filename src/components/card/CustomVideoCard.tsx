@@ -51,11 +51,15 @@ export default function CustomVideoCard(props: IProps & any) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        isLikedByMe();
+        setLikes(props.likes);
     }, [props.likes]);
 
+    useEffect(() => {
+        isLikedByMe();
+    }, [likes]);
+
     const isLikedByMe = async () => {
-        setLoading(true);
+        // setLoading(true);
         const res = await axios.get("https://geolocation-db.com/json/");
         setIP(res.data.IPv4);
         if (likes && likes[card.id]) {
@@ -63,7 +67,7 @@ export default function CustomVideoCard(props: IProps & any) {
         } else {
             setLikedByMe(false);
         }
-        setLoading(false);
+        // setLoading(false);
     };
 
     const likePost = async () => {
@@ -99,7 +103,7 @@ export default function CustomVideoCard(props: IProps & any) {
                 }}
                 style={{
                     border: "1px #002E6E solid",
-                    borderRadius:"25px"
+                    borderRadius: "25px",
                 }}
             >
                 <div className="tooltip">
@@ -124,7 +128,7 @@ export default function CustomVideoCard(props: IProps & any) {
                         style={{
                             fontFamily: "Domine",
                             fontWeight: "bold",
-                            boxShadow:"2px 2px 2px 1px #000"
+                            boxShadow: "2px 2px 2px 1px #000",
                         }}
                         subheader={card.date}
                     />
