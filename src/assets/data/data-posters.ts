@@ -256,7 +256,7 @@ export const postGraduate = {
 };
 
 export const leaderShip = {
-    "Reto de liderazgo - Votaciones": [
+    "Reto de liderazgo - Resultados": [
         {
             id: "v1",
             type: "video",

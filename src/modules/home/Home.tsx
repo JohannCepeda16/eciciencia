@@ -37,15 +37,10 @@ export default function Home(props: any) {
                     Posters de semilleros
                 </Link>
                 <Link fontSize="30px" underline="hover" color="inherit" href="#reto-liderazgo">
-                    Votaciones - Reto Liderazgo
+                    Resultados - Reto Liderazgo
                 </Link>
             </Breadcrumbs>
-            {/* Reto liderazgo  */}
-            <div id="reto-liderazgo">
-                {leaderShipKeys.map((item: any, i: number) => (
-                    <CardList fetchLikes={props.fetchLikes} key={i} title={item} cards={leaderShipValues[i]} likes={props.likes}/>
-                ))}
-            </div>
+            
             {/* Posgrado */}
             <div id="maestria">
                 {graduateKeys.map((item: any, i: number) => (
@@ -56,6 +51,13 @@ export default function Home(props: any) {
             <div id="semilleros">
                 {posterKeys.map((item: any, i: number) => (
                     <CardList fetchLikes={props.fetchLikes} key={i} title={item} cards={posterValues[i]} likes={props.likes}/>
+                ))}
+            </div>
+
+            {/* Reto liderazgo  */}
+            <div id="reto-liderazgo">
+                {leaderShipKeys.map((item: any, i: number) => (
+                    <CardList fetchLikes={props.fetchLikes} key={i} title={item} cards={leaderShipValues[i]} likes={props.likes}/>
                 ))}
             </div>
         </>
